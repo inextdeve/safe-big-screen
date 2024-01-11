@@ -63,7 +63,7 @@ bgScreen.loadInfo = function () {
   //单个请求时间太长，分为3个请求
   var _this = this;
   $.myajax.jsonPost(
-    "http://95.216.164.214" + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfo.action",
+    ctxPath + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfo.action",
     null,
     false,
     function (json, success) {
@@ -79,7 +79,7 @@ bgScreen.loadInfo = function () {
   //   }
   // );
   $.myajax.jsonPost(
-    "http://95.216.164.214" + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfoEx.action",
+    ctxPath + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfoEx.action",
     null,
     false,
     function (json, success) {
@@ -93,7 +93,7 @@ bgScreen.loadInfo = function () {
  */
 bgScreen.loadRiskScore = function () {
   $.myajax.jsonPost(
-    "http://95.216.164.214" + "/808gps/StandardZHScreenAction_loadVehicleRiskScoreInfo.action",
+    ctxPath + "/808gps/StandardZHScreenAction_loadVehicleRiskScoreInfo.action",
     null,
     false,
     function (json, success) {
@@ -471,16 +471,22 @@ bgScreen.lineChart = function (ele, xd, yd) {
 };
 
 bgScreen.loadConstant = function () {
-parent.lang = {}
-  // document.title = parent.lang.securityCloudScreen;
-  if (false) {
+  $("#kpiDateInput")
+    .datepicker({ dateFormat: "m-d-yy" })
+    .datepicker($.datepicker.regional["ar-eg"]);
+
+  document.title = parent.lang.securityCloudScreen;
+  document.getElementById("bigScreenTitle").innerText =
+    parent.lang.bigScreenTitle;
+
+  if (myUserRole && myUserRole.isEnableShiGan()) {
     $("#safeBigScreen").text("HHHHHH");
     $("#vehiScore").text(parent.lang.companyGrade);
   } else {
     $("#safeBigScreen").text(parent.lang.securityCloudScreen);
-    $("#vehiScore").text("Last 7 Days");
+    $("#vehiScore").text(parent.lang.last7DaysEx);
   }
-  $("#riskVehiList").text("KPI"); //Modified
+  $("#riskVehiList").text(parent.lang.kpi); //Modified
   $(".total .data1 span:eq(0)").text(
     parent.lang.last7DaysEx + parent.lang.labelLiChengKM
   );
@@ -495,15 +501,15 @@ parent.lang = {}
   $("#onlineCondition").text(parent.lang.onlineCondition);
   $("#onlineRate").text(parent.lang.onlineRate);
   $("#offlineRate").text(parent.lang.offlineRate);
-  $("#riskSituation").text("DVR Monitoring");
-  $("#kpiFacilities").text("KPI Facilities");
+  $("#riskSituation").text(parent.lang.dvr);
+  $("#kpiFacilities").text(parent.lang.facilities);
   $("#highRisk h5").text(parent.lang.high_risk_vehi);
   $("#middleRisk h5").text(parent.lang.middle_risk_vehi);
   $("#lowRisk h5").text(parent.lang.low_risk_vehi);
-  $(".cicle8 p").text("Mosques"); // Washing
-  $(".cicle9 p").text("Schools"); // Bins
-  $(".cicle10 p").text("Toilets"); // Sweeping
-  $(".cicle11 p").text("Totals"); // Vehicle
+  $(".cicle8 p").text(parent.lang.mosques); // Washing
+  $(".cicle9 p").text(parent.lang.schools); // Bins
+  $(".cicle10 p").text(parent.lang.toilets); // Sweeping
+  $(".cicle11 p").text(parent.lang.total); // Vehicle
   // $("#dataStatus").text("KPIs RCJ cleaning project");
   $("#fullScreen").attr("title", parent.lang.fullScreen1);
 };
@@ -1003,7 +1009,7 @@ bgScreen.bindEvent = function () {
  */
 bgScreen.loadPage = function () {
   //车辆风险排名弹出表格
-  // bgScreen.vehicleRiskScore = new VehicleRiskScore();
+  bgScreen.vehicleRiskScore = new VehicleRiskScore();
   //语言化
   bgScreen.loadConstant();
   bgScreen.replaceTag();
@@ -1093,38 +1099,19 @@ bgScreen.placeholderPic = function () {
  * 加载页面
  */
 bgScreen.loadReadPage = function () {
-  if (false) { //falsey
+  if (typeof lang == "undefined") {
     setTimeout(bgScreen.loadReadPage, 50);
   } else {
-    //先判断session，再判断用户名和密码
-    var session = getUrlParameter("userSession");
-    var account_ = getUrlParameter("account");
-    var password_ = getUrlParameter("password");
-    if (false) {
-      setTimeout(
-        SessionLogin.directLogin(function () {
-          handleScreen();
-          bgScreen.loadPage();
-        }),
-        100
-      );
-    } else {
-      //检测登录
-      // bgScreen.checkSessionExpire();
-      // 解决pc端屏幕缩放比例对页面布局的影响
-      handleScreen();
-      bgScreen.loadPage();
-    }
+    handleScreen();
+    bgScreen.loadPage();
   }
 };
 
 $(function () {
   //初始化语言
-  console.log("Launched")
-  // langInitByUrl();
+  langInitByUrl();
   bgScreen.initStyle();
   bgScreen.loadReadPage();
-  console.log("End")
 });
 
 function resizeHeight() {
@@ -1448,8 +1435,8 @@ RIGHT_DATE_INPUT.addEventListener("input", (event) => {
   event.target.blur();
 });
 
-getRightKpi();
-camerasFetching();
-GetKPIINFO();
-RankScore();
-vehicleStatistics();
+// getRightKpi();
+// camerasFetching();
+// GetKPIINFO();
+// RankScore();
+// vehicleStatistics();

@@ -9,14 +9,14 @@
     <link rel="stylesheet" type="text/css" href="../font-awesome-4.7.0/css/font-awesome.min.css?tv=${version}">
     <link rel="stylesheet" type="text/css" href="../bootstrap-4.3.1/css/bootstrap-dark.min.css?tv=${version}">
     <link rel="stylesheet" href="../SafeDashboardManagement/css/style.css?tv=${version}">
-    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <title></title>
 </head>
 <body onresize="handleScreen();">  <!--onresize="resizeHeight()"-->
     <div id="main_content" style="width: 100%;height: 100%">
         <!-- 头部模块 -->
         <header>
-            <h1 ><span>KPIs RCJ cleaning project</span></h1>
+            <h1 ><span id="bigScreenTitle"></span></h1>
             <!-- <p><img src="./images/logotraccar.png" width="200px" /></p> -->
         </header>
 
@@ -25,7 +25,7 @@
             <!-- top5 -->
             <div class="top5 kpi">
                 <div class="tc-date" >
-                    <input type="date" id="kpiDateInput">
+                    <input type="text" id="kpiDateInput" style="user-select: none;">
                 </div>
                 <div class="top5-title">
                     <span id="riskVehiList"></span>
@@ -293,6 +293,8 @@
     <script src="js/react/react.development.js"></script>
     <script src="js/react/react-dom.development.js"></script>
     <script type="text/javascript" src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="./js/datepicker-ar.js"></script>
     <script type="text/javascript" src="../../js/echarts/echarts532-resource.js"></script>
     <script type="text/javascript" src="../../js/echarts/echarts-liquidfill.min.js"></script>
     <script type="text/javascript" src="../../js/public.js"></script>
