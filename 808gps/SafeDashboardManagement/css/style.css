@@ -1,7 +1,19 @@
+:root {
+  --arabic-font: "Cairo"
+}
 * {
   margin: 0;
   padding: 0;
 }
+@font-face {
+  font-family: "Cairo";
+  src: url("../fonts/cairo/static/Cairo-Regular.ttf");
+}
+@font-face {
+  font-family: "LCdd";
+  src: url("../fonts/LCdd.TTF");
+}
+
 html,
 body {
   width: 100%;
@@ -12,15 +24,14 @@ body {
   background: url(../images/53bg.png) no-repeat;
   background-size: cover;
   cursor: pointer;
+  text-align:unset
 }
+
 ul,
 li {
   list-style: none;
 }
-@font-face {
-  font-family: "LCdd";
-  src: url("../fonts/LCdd.TTF");
-}
+  
 .hidden-module {
   /* display: none !important; */
   width: 0 !important;
@@ -49,6 +60,10 @@ header h1 {
 header h1 span {
   display: table-cell;
   vertical-align: middle;
+}
+html[lang="ar"] header h1 span {
+  font-family: var(--arabic-font);
+  font-size: 1.2rem;
 }
 header p {
   color: white;
@@ -87,6 +102,10 @@ header p {
   -webkit-box-sizing: unset;
   box-sizing: unset;
 }
+html[lang="ar"] .ui-widget {
+  font-family: var(--arabic-font);
+  font-size: 0.7rem;
+}
 .main .top5 .top5-title {
   width: 100%;
   height: 10%;
@@ -96,6 +115,10 @@ header p {
   text-align: center;
   display: table;
   font-size: 0.9rem;
+}
+html[lang="ar"] .main .top5 .top5-title,
+html[lang="ar"] .rightModuleTitle {
+  font-family: var(--arabic-font);
 }
 .main .top5 .top5-title span {
   display: table-cell;
@@ -218,7 +241,20 @@ header p {
 .main .total .data5 span {
   color: #0ac1c7;
   font-size: 1.1rem;
-  font-family: "宋体";
+  font-family: "LCdd";
+  
+}
+
+html[lang="ar"] .main .total .data1 span,
+html[lang="ar"] .main .total .data2 span,
+html[lang="ar"] .main .total .data3 span,
+html[lang="ar"] .main .total .data4 span,
+html[lang="ar"] .main .total .data5 span {
+  color: #0ac1c7;
+  font-size: 1.1rem;
+  font-family: var(--arabic-font);
+
+  
 }
 .main .total .data1 p,
 .main .total .data2 p,
@@ -384,6 +420,7 @@ header p {
   text-align: center;
   /* Added text-align,  */
 }
+
 .main .total .cicle8 p,
 .main .total .cicle9 p,
 .main .total .cicle10 p,
@@ -393,6 +430,17 @@ header p {
   text-align: center;
   font-size: 0.7rem;
 }
+
+html[lang="ar"] .main .total .cicle8 p,
+html[lang="ar"] .main .total .cicle9 p,
+html[lang="ar"] .main .total .cicle10 p,
+html[lang="ar"] .main .total .cicle11 p,
+html[lang="ar"] .main .total .cicle12 p,
+html[lang="ar"] .main .total .cicle13 p {
+  font-family: var(--arabic-font);
+
+}
+
 .main .total .cicle8 {
   background: url(../images/circle1.png) no-repeat;
   background-size: 100%;

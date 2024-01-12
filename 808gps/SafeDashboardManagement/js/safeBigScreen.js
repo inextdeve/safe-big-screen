@@ -475,6 +475,9 @@ bgScreen.loadConstant = function () {
     .datepicker({ dateFormat: "m-d-yy" })
     .datepicker($.datepicker.regional["ar-eg"]);
 
+    $("#rightKpiDateInput").datepicker({ dateFormat: "m-d-yy" })
+    .datepicker($.datepicker.regional["ar-eg"]);
+
   document.title = parent.lang.securityCloudScreen;
   document.getElementById("bigScreenTitle").innerText =
     parent.lang.bigScreenTitle;
@@ -1435,8 +1438,8 @@ RIGHT_DATE_INPUT.addEventListener("input", (event) => {
   event.target.blur();
 });
 
-// getRightKpi();
-// camerasFetching();
-// GetKPIINFO();
-// RankScore();
-// vehicleStatistics();
+getRightKpi();
+camerasFetching();
+GetKPIINFO();
+RankScore();
+vehicleStatistics();

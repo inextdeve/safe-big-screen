@@ -1212,10 +1212,10 @@
   this.all_companies = "All Companies";
   this.day = "day";
   this.min_day = "D";
-  this.hour = "Hour";
-  this.min_hour = "H";
-  this.minute = "Minute";
-  this.min_minute = "M";
+  this.hour = "ساعة";
+  this.min_hour = "س";
+  this.minute = "دقيقة";
+  this.min_minute = "د";
   this.second = "Seconds";
   this.min_second = "S";
   this.good = "Good";
@@ -1839,7 +1839,6 @@
   this.labelCount = "(Frequency)";
   this.labelKmPerHour = "(KM / H).";
   this.labelMilePerHour = "(Mi / H).";
-  this.labelLiChengKM = "(KM)";
   this.labelLiChengMile = "(Mi)";
   this.KmPerHour = "KM / H";
   this.MilePerHour = "Mi / H";
@@ -1860,7 +1859,7 @@
   this.southWest = "Southwest";
   this.west = "West";
   this.northWest = "Northwest";
-  this.km = "KM";
+  this.km = "كم";
   this.mile = "Miles";
   this.yes = "Yes";
   this.no = "No";
