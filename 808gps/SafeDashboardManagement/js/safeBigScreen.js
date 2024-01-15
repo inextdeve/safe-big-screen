@@ -5,7 +5,9 @@ import Camera from "./components/camera/camera.js";
 import AddCamerasButton from "./components/camera/addCamerasButton.js";
 import DevicesList from "./components/camera/DevicesList.js";
 import { countTotal, countRate } from "./utils/utils.js";
+import { generatei18nT } from "./utils/i18n.js";
 const URL = "https://s1.rcj.care/v2";
+const cmsv6server = "http://95.216.164.214";
 
 var bgScreen = {
   accountId: "",
@@ -63,7 +65,7 @@ bgScreen.loadInfo = function () {
   //单个请求时间太长，分为3个请求
   var _this = this;
   $.myajax.jsonPost(
-    ctxPath + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfo.action",
+    cmsv6server + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfo.action",
     null,
     false,
     function (json, success) {
@@ -79,7 +81,8 @@ bgScreen.loadInfo = function () {
   //   }
   // );
   $.myajax.jsonPost(
-    ctxPath + "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfoEx.action",
+    cmsv6server +
+      "/808gps/StandardReportAlarmSuBiao_loadBigScreenInfoEx.action",
     null,
     false,
     function (json, success) {
@@ -93,7 +96,8 @@ bgScreen.loadInfo = function () {
  */
 bgScreen.loadRiskScore = function () {
   $.myajax.jsonPost(
-    ctxPath + "/808gps/StandardZHScreenAction_loadVehicleRiskScoreInfo.action",
+    cmsv6server +
+      "/808gps/StandardZHScreenAction_loadVehicleRiskScoreInfo.action",
     null,
     false,
     function (json, success) {
@@ -359,16 +363,21 @@ bgScreen.lineChart = function (ele, xd, yd) {
   var seriesName = "";
   var option = {
     title: {
-      text: parent.lang.last30Days + " " + parent.lang.alarmTrend,
+      text:
+        parent.lang.last30Days +
+        " " +
+        parent.lang.alarmTrend +
+        "                                                                         ",
       textStyle: {
         fontWeight: "normal",
         fontSize: 14,
+        fontFamily: parent.lang_local === "ar" ? "Cairo" : "",
         color: "#0ac1c7",
       },
     },
     grid: {
       left: "5%",
-      //   right: "2%",
+      // right: "2%",
       bottom: "5%",
       top: "15%",
       containLabel: true,
@@ -475,7 +484,8 @@ bgScreen.loadConstant = function () {
     .datepicker({ dateFormat: "m-d-yy" })
     .datepicker($.datepicker.regional["ar-eg"]);
 
-    $("#rightKpiDateInput").datepicker({ dateFormat: "m-d-yy" })
+  $("#rightKpiDateInput")
+    .datepicker({ dateFormat: "m-d-yy" })
     .datepicker($.datepicker.regional["ar-eg"]);
 
   document.title = parent.lang.securityCloudScreen;
@@ -493,7 +503,9 @@ bgScreen.loadConstant = function () {
   $(".total .data1 span:eq(0)").text(
     parent.lang.last7DaysEx + parent.lang.labelLiChengKM
   );
-  // $(".total .data1 span:eq(1)").text(parent.lang.safeLicheng);
+
+  $("#vehiScore2").text(parent.lang.alarmTrend);
+
   $(".total .data5 span:eq(0)").text(
     parent.lang.last7DaysEx + "(" + parent.lang.hour + ")"
   );
@@ -633,7 +645,8 @@ bgScreen.loadAlarm = function () {
       ",@@NOTIFY_EVENT@@",
   };
   $.myajax.jsonPost(
-    "/808gps/StandardPositionAction_alarm.action?isBigScreen=B&toMap=2",
+    cmsv6server +
+      "/808gps/StandardPositionAction_alarm.action?isBigScreen=B&toMap=2",
     data,
     false,
     function (json, success) {
@@ -1062,10 +1075,14 @@ bgScreen.topColor = function () {
         backgroundSize: "100%",
       });
 
-    $(ele[i]).find(".li-content").css({
-      background: "url(./images/border2.png) no-repeat center",
-      backgroundSize: "contain",
-    });
+    $(ele[i])
+      .find(".li-content")
+      .css({
+        background: `url(./images/${
+          parent.lang_local === "ar" ? "border2.rtl" : "border2"
+        }.png) no-repeat center`,
+        backgroundSize: "contain",
+      });
 
     // Manipulate green backgrounds
     Array.from($(ele[i]).siblings().find(".cicle")).forEach((cicle, index) => {
@@ -1081,10 +1098,15 @@ bgScreen.topColor = function () {
         backgroundSize: "100%",
       });
     });
-    $(ele[i]).siblings().find(".li-content").css({
-      background: "url(./images/border.png) no-repeat center",
-      backgroundSize: "contain",
-    });
+    $(ele[i])
+      .siblings()
+      .find(".li-content")
+      .css({
+        background: `url(./images/${
+          parent.lang_local === "ar" ? "border.rtl" : "border"
+        }.png) no-repeat center`,
+        backgroundSize: "contain",
+      });
     i++;
     if (i == length) {
       i = 0;
@@ -1109,10 +1131,15 @@ bgScreen.loadReadPage = function () {
     bgScreen.loadPage();
   }
 };
-
+bgScreen.initI18nConfig = () => {
+  $("html")
+    .attr("lang", parent.lang_local)
+    .attr("dir", parent.lang_local === "ar" ? "rtl" : "ltr");
+};
 $(function () {
   //初始化语言
   langInitByUrl();
+  bgScreen.initI18nConfig();
   bgScreen.initStyle();
   bgScreen.loadReadPage();
 });
@@ -1139,6 +1166,7 @@ async function GetKPIINFO(
       `${URL}/api/statistics/kpi?${query.toString()}`,
       {
         headers: { Authorization: `Bearer fb329817e3ca2132d39134dd26d894b2` },
+        cache: "force-cache",
       }
     );
     const data = await response.json();
@@ -1153,12 +1181,12 @@ async function GetKPIINFO(
         ".main .top5 .top5-content ul li:eq(" +
           index +
           ") .li-content span:eq(0)"
-      ).text(kpi[j].name);
+      ).text(generatei18nT(kpi[j].name));
       $(
         ".main .top5 .top5-content ul li:eq(" +
           index +
           ") .li-content span:eq(1)"
-      ).text(`${kpi[j].completed} of ${kpi[j].total}`);
+      ).text(`${kpi[j].completed} ${parent.lang.of1} ${kpi[j].total}`);
       $(
         ".main .top5 .top5-content ul li:eq(" +
           index +
@@ -1213,7 +1241,7 @@ const getRightKpi = async (
       .filter((kpi) => rightKpiTypeIds.includes(Number(kpi.typeId)))
       .map((kpi) => ({
         typeId: kpi.typeId,
-        name: kpi.typeName,
+        name: generatei18nT(kpi.typeName),
         total: Number(kpi.count),
         completed: Number(kpi.done),
         uncompleted: Number(kpi.undone),
@@ -1225,7 +1253,7 @@ const getRightKpi = async (
     // Sorting for matching the ui
 
     rightKPI.push({
-      name: "Total",
+      name: parent.lang.total,
       total: countTotal(rightKPI, "total", "int"),
       completed: countTotal(rightKPI, "completed", "int"),
       uncompleted: countTotal(rightKPI, "uncompleted", "int"),
@@ -1255,7 +1283,9 @@ const getRightKpi = async (
         ".main .kpiFacilities .top5-content ul li:eq(" +
           index +
           ") .li-content span:eq(1)"
-      ).text(`${rightKPI[j].completed} of ${rightKPI[j].total}`);
+      ).text(
+        `${rightKPI[j].completed} ${parent.lang.of1} ${rightKPI[j].total}`
+      );
       $(
         ".main .kpiFacilities .top5-content ul li:eq(" +
           index +
@@ -1369,7 +1399,7 @@ const RankScore = async () => {
     //Statistics summary Rank Score
     $("#top1,#top2,#top3,#top4").show();
     for (var i = 0, len = data.length; i < len; i++) {
-      $("#top" + (i + 1) + " span:eq(0)").text(data[i].name); //name
+      $("#top" + (i + 1) + " span:eq(0)").text(generatei18nT(data[i].name)); //name
       $("#top" + (i + 1) + " span:eq(0)").attr("title", null);
       $("#top" + (i + 1) + " span:eq(1)").text(data[i].totalItems);
 

@@ -1778,10 +1778,20 @@
   this.total = "الإجمالي";
   this.schools = "المدارس";
   this.mosques = "المساجد";
-  this.bigScreenTitle = "مشروع التنظيف";
+  this.bigScreenTitle = "مشروع نظافة شمال الهفوف";
   this.kpi = "مؤشرات الأداء";
   this.facilities = "المرافق";
   this.dvr = "كامرات المراقبة";
+  this.buildings = "البنايات";
+  this.vehicles = "المركبات";
+  this.sweepers = "الكنس";
+  this.washing = "التنظيف";
+  this.bins = "الحاويات";
+  this.cartoons = "الكرتون";
+  this.reports = "التقارير";
+  this.of1 = "من";
+  this.alarmTrend = "التنبيهات";
+  this.last30Days = "آخر ٣٠ يوم";
 
   this.exportReport = "EXP File Format";
   this.btnSelectVehicle = "Sel Vehicle";

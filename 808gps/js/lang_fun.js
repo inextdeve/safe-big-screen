@@ -2,6 +2,11 @@ var lang_local; //本地语言
 var lang; //语言对象，通过调用lang.lable来获取语言信息
 var rootElement;
 var noCookie = false;
+function loadStyle(src) {
+  const style = document.createElement("link");
+  $(style).attr("rel", "stylesheet").attr("href", src);
+  $("head").append(style);
+}
 //初始化语言，跟据浏览器的语言
 function langInitByBrowser() {
   //先从Cookie中获取语言参数
@@ -404,6 +409,7 @@ function langChange(local) {
       }
     );
   } else if (langIsAr()) {
+    loadStyle("./css/style.rtl.css");
     loadScript(
       rootPath + "/js/lang_en.js?tv=" + rootElement.ttxWebVersion,
       function () {

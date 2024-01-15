@@ -16,6 +16,14 @@ function langEnglish() {
   this.lang_france = "France";
   this.lang_hebrew = "Hebrew";
 
+  // Added props
+  this.sweepers = "Sweepers";
+  this.washing = "Washing";
+  this.bins = "Bins";
+  this.cartoons = "Cartoons";
+  this.reports = "Reports";
+  this.bigScreenTitle = "North Al-Hofuf Cleaning Project";
+
   this.travelmanger_Info = "Driving License Information";
   this.travelmanger_travelNumber = "Driving License NO.";
   this.travelmanger_natureOfUse = "Nature Of Use";
@@ -13763,7 +13771,7 @@ function langEnglish() {
   this.operating_end_date_format =
     "Expiry date of Transport Certificate (Format: 2017-11-11)";
 
-  this.of1 = "of";
+  this.of1 = "Of";
   this.vehicle_technology_rating = "Vehicle Technology Rating Information";
   this.select_vehicle_unopenacc =
     "The selected vehicle does not have ACC turned on";

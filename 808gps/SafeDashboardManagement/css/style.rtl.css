@@ -1,0 +1,37 @@
+html[dir="rtl"] body {
+  text-align: right;
+  font-family: var(--arabic-font);
+}
+.main .analyse,
+.main .total,
+.main .top5,
+.main .sale ul li .data,
+.main .sale ul li .vehiScoreTop1Chart,
+.main .sale ul li .vehiScoreTop2Chart,
+.main .sale ul li .vehiScoreTop3Chart,
+.main .sale ul li .vehiScoreTop4Chart {
+  float: right;
+}
+.main .top5 .top5-content ul li .li-content {
+  background: url(../images/border.rtl.png) no-repeat center;
+}
+.main .top5 .top5-content ul li:nth-of-type(1) .li-content {
+  background: url(../images/border2.rtl.png) no-repeat center;
+}
+.main .top5 .top5-content ul li .cicle {
+  right: 0;
+}
+.main .top5 .top5-content ul li .li-content {
+  padding-left: 0;
+  padding-right: 13.5%;
+  padding-top: 2%;
+}
+.main .sale {
+  left: auto;
+  right: 0;
+}
+.main .lineChart {
+  left: 1%;
+  right: auto;
+  bottom: -10%;
+}
