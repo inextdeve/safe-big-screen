@@ -1,5 +1,5 @@
 :root {
-  --arabic-font: "Cairo"
+  --arabic-font: "Cairo";
 }
 * {
   margin: 0;
@@ -24,14 +24,14 @@ body {
   background: url(../images/53bg.png) no-repeat;
   background-size: cover;
   cursor: pointer;
-  text-align:unset
+  text-align: unset;
 }
 
 ul,
 li {
   list-style: none;
 }
-  
+
 .hidden-module {
   /* display: none !important; */
   width: 0 !important;
@@ -82,6 +82,36 @@ header p {
 #fullScreen img {
   width: 100%;
   height: 100%;
+}
+#langSelector {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  top: 5px;
+  left: 100px;
+}
+#langSelector svg {
+  margin-top: 1px;
+  width: 65%;
+  height: 65%;
+  background: #1496a0;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+#langMenu {
+  position: fixed;
+  top: 55px;
+  left: 75px;
+  background: #1497a0a7;
+  color: white;
+  width: 100px;
+  text-align: center;
+  display: none;
+  padding: 2px;
+}
+#langMenu .ui-state-active {
+  background: #09c4ca;
 }
 .main {
   width: 100%;
@@ -242,7 +272,6 @@ html[lang="ar"] .rightModuleTitle {
   color: #0ac1c7;
   font-size: 1.1rem;
   font-family: "LCdd";
-  
 }
 
 html[lang="ar"] .main .total .data1 span,
@@ -253,8 +282,6 @@ html[lang="ar"] .main .total .data5 span {
   color: #0ac1c7;
   font-size: 1.1rem;
   font-family: var(--arabic-font);
-
-  
 }
 .main .total .data1 p,
 .main .total .data2 p,
@@ -438,7 +465,6 @@ html[lang="ar"] .main .total .cicle11 p,
 html[lang="ar"] .main .total .cicle12 p,
 html[lang="ar"] .main .total .cicle13 p {
   font-family: var(--arabic-font);
-
 }
 
 .main .total .cicle8 {

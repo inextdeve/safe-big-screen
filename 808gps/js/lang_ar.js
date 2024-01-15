@@ -1792,6 +1792,7 @@
   this.of1 = "من";
   this.alarmTrend = "التنبيهات";
   this.last30Days = "آخر ٣٠ يوم";
+  (this.en = "إنجليزي"), (this.ar = "عربي");
 
   this.exportReport = "EXP File Format";
   this.btnSelectVehicle = "Sel Vehicle";

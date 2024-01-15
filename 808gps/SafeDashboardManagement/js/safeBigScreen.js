@@ -4,8 +4,8 @@
 import Camera from "./components/camera/camera.js";
 import AddCamerasButton from "./components/camera/addCamerasButton.js";
 import DevicesList from "./components/camera/DevicesList.js";
-import { countTotal, countRate } from "./utils/utils.js";
-import { generatei18nT } from "./utils/i18n.js";
+import { countTotal, countRate, replaceQueryParam } from "./utils/utils.js";
+import { generatei18nT, locals } from "./utils/i18n.js";
 const URL = "https://s1.rcj.care/v2";
 const cmsv6server = "http://95.216.164.214";
 
@@ -491,7 +491,6 @@ bgScreen.loadConstant = function () {
   document.title = parent.lang.securityCloudScreen;
   document.getElementById("bigScreenTitle").innerText =
     parent.lang.bigScreenTitle;
-
   if (myUserRole && myUserRole.isEnableShiGan()) {
     $("#safeBigScreen").text("HHHHHH");
     $("#vehiScore").text(parent.lang.companyGrade);
@@ -1024,6 +1023,8 @@ bgScreen.bindEvent = function () {
  * 加载页面
  */
 bgScreen.loadPage = function () {
+  bgScreen.langChange();
+
   //车辆风险排名弹出表格
   bgScreen.vehicleRiskScore = new VehicleRiskScore();
   //语言化
@@ -1152,6 +1153,33 @@ function resizeHeight() {
   document.documentElement.clientWidth = getWindowWidth();
   console.log($(document).width());
 }
+
+bgScreen.langChange = () => {
+  locals.forEach(function (local) {
+    if (!parent?.lang) return;
+    const div = document.createElement("div");
+    const li = document.createElement("li");
+    li.innerText = parent.lang[local];
+    $(div)
+      .append(li)
+      .on("click", function () {
+        if (local === parent.lang_local) {
+          $("#langMenu").slideToggle(100);
+          return;
+        }
+
+        window.location =
+          window.location.pathname +
+          replaceQueryParam("lang", local, window.location.search);
+      });
+    $("#langMenu").append(div);
+  });
+
+  $("#langMenu").menu();
+  $("#langSelector").on("click", () => {
+    $("#langMenu").slideToggle(100);
+  });
+};
 
 async function GetKPIINFO(
   from = new Intl.DateTimeFormat("sv-SE", {

@@ -25,3 +25,5 @@ export const generatei18nT = (key) => {
       return key;
   }
 };
+
+export const locals = ["ar", "en"];

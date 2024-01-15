@@ -23,6 +23,8 @@ function langEnglish() {
   this.cartoons = "Cartoons";
   this.reports = "Reports";
   this.bigScreenTitle = "North Al-Hofuf Cleaning Project";
+  this.en = "English";
+  this.ar = "Arabic";
 
   this.travelmanger_Info = "Driving License Information";
   this.travelmanger_travelNumber = "Driving License NO.";
